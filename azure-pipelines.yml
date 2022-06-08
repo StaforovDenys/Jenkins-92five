@@ -48,7 +48,7 @@ stages:
     - script: |
         composer self-update
         composer dump-autoload
-        composer update --no-scripts --ignore-platform-req=ext-dom
+        composer update --no-scripts --ignore-platform-reqs
       workingDirectory: $(rootFolder)
       displayName: 'Install Composer'
 

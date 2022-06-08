@@ -76,5 +76,7 @@ stages:
             displayName: 'Deploy Azure Web App : 92five'
             inputs:
               azureSubscription: $(azureSubscription)
+              appType: webAppLinux
               appName: $(webAppName)
+              runtimeStack: 'PHP|5.6'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip

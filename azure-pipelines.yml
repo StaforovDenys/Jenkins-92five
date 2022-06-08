@@ -14,7 +14,7 @@ variables:
   webAppName: '92five'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-16.04'
+  vmImageName: 'ubuntu-latest'
 
   # Environment name
   environmentName: '92five'

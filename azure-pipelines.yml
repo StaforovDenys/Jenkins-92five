@@ -14,7 +14,7 @@ variables:
   webAppName: '92five'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-16.04'
 
   # Environment name
   environmentName: '92five'
@@ -42,9 +42,15 @@ stages:
       workingDirectory: $(rootFolder)
       displayName: 'Use PHP version $(phpVersion)'
 
-    - script: composer update --no-scripts --ignore-platform-req=ext-dom
+   # - script: composer update --no-scripts --ignore-platform-req=ext-dom
+    #  workingDirectory: $(rootFolder)
+     # displayName: 'Composer install'
+    - script: |
+        composer self-update
+        composer dump-autoload
+        composer install --no-scripts --ignore-platform-req
       workingDirectory: $(rootFolder)
-      displayName: 'Composer install'
+      displayName: 'Install Composer'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

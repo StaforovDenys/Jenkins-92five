@@ -46,9 +46,9 @@ stages:
     #  workingDirectory: $(rootFolder)
      # displayName: 'Composer install'
     - script: |
-        composer self-update
-        composer dump-autoload
         composer update --no-scripts --ignore-platform-reqs
+        composer install --no-interaction --prefer-dist --no-suggest
+        composer --version
       workingDirectory: $(rootFolder)
       displayName: 'Install Composer'
 

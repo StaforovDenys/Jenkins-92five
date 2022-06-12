@@ -19,7 +19,7 @@ variables:
   # Environment name
   environmentName: '92five'
 
-  # Root folder under which your composer.json file is available.
+  # Rootfolder under which your composer.json file is available.
   rootFolder: $(System.DefaultWorkingDirectory)
 
 stages:

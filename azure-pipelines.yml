@@ -95,7 +95,7 @@ stages:
               deployToSlotOrASE: true
               resourceGroupName: 'app-service-rg'
               slotName: 'production'
-              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               runtimeStack: 'PHP|5.6'
           - task: PublishBuildArtifacts@1    
             displayName: 'Publish Artifact: drop'

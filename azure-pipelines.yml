@@ -97,4 +97,7 @@ stages:
               slotName: 'production'
               package: '$(System.DefaultWorkingDirectory)/**/*.zip'
               runtimeStack: 'PHP|5.6'
-          - task: PublishBuildArtifacts@1
+          - task: PublishBuildArtifacts@1    
+            displayName: 'Publish Artifact: drop'
+            inputs:
+              PathtoPublish: '$(build.artifactstagingdirectory)'

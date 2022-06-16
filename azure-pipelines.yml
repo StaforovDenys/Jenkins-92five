@@ -64,6 +64,8 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
+
+
 - stage: Deploy
   displayName: 'Deploy Web App'
   dependsOn: Build
@@ -77,11 +79,21 @@ stages:
       runOnce:
         deploy:
           steps:
+         # - task: AzureWebApp@1
+         #   displayName: 'Deploy Azure Web App : 92five'
+         #   inputs:
+         #     azureSubscription: $(azureSubscription)
+         #     appType: webAppLinux
+         #     appName: $(webAppName)
+         #     runtimeStack: 'PHP|5.6'
+         #     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : 92five'
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
+              azureSubscription: '92five (9b26d84d-143e-43fd-8c05-0fc2cf10d4e4)'
+              appType: 'webAppLinux'
+              appName: 'terra92five'
+              deployToSlotOrASE: true
+              resourceGroupName: 'app-service-rg'
+              slotName: 'production'
+              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
               runtimeStack: 'PHP|5.6'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip

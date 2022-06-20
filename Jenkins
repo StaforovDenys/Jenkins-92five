@@ -1,0 +1,31 @@
+pipeline {
+    agent none
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage ("Creating docker container and push") {
+            agent any
+            steps {
+                sh  'docker build -t staferovdenis7/92five:v2 .'
+                
+                withDockerRegistry([ credentialsId: 'dockerhub_id', url: '' ]) {
+                    sh  'docker push staferovdenis7/92five:v2'
+                }
+           }
+        }
+         stage ("Deploy container on Kubernetes") {
+            agent any
+            steps {
+                sh  'kubectl run 92five1  --image staferovdenis7/92five:v2 '
+            }
+        }
+    }
+}    
